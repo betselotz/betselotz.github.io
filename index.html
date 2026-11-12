@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Betselot Zerihun Ayano · Bioinformatics &amp; Pathogen Genomics</title>
+<meta name="description" content="Betselot Zerihun Ayano — Bioinformatician at the Ethiopian Public Health Institute working on pathogen genomics, outbreak sequencing and antimicrobial resistance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f6f2; --surface:#ffffff; --ink:#1c2321; --muted:#5d6764; --line:#e3e1da;
+    --accent:#0f6e5c; --accent-soft:#e3f1ec; --accent-2:#b4532a;
+    --serif:"Fraunces",Georgia,serif; --sans:"Inter",system-ui,sans-serif; --mono:"JetBrains Mono",ui-monospace,monospace;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#121615;--surface:#1a201e;--ink:#e8ece9;--muted:#9aa5a1;--line:#2a3330;--accent:#4fc0a4;--accent-soft:#1d2e29;--accent-2:#e08a5f;}
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;scroll-padding-top:72px}
+  body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.65;font-size:16px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* nav */
+  header.nav{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:1120px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+  .brand{font-family:var(--serif);font-weight:600;font-size:1.1rem;color:var(--ink)}
+  .nav ul{list-style:none;display:flex;gap:18px}
+  .nav ul a{color:var(--muted);font-size:.92rem;font-weight:500}
+  .nav ul a:hover{color:var(--accent);text-decoration:none}
+  .menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--ink);border-radius:8px;padding:6px 10px;font:inherit;cursor:pointer}
+
+  /* layout */
+  .wrap{max-width:1120px;margin:0 auto;padding:48px 24px 24px;display:grid;grid-template-columns:300px 1fr;gap:56px}
+  aside{position:sticky;top:96px;align-self:start}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:28px}
+  .avatar{width:150px;height:150px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#fff;font-family:var(--serif);font-size:2.4rem;margin-bottom:18px;overflow:hidden}
+  .avatar img{width:100%;height:100%;object-fit:cover}
+  aside h2{font-family:var(--serif);font-size:1.35rem;line-height:1.3}
+  aside .role{color:var(--muted);font-size:.93rem;margin:6px 0 16px}
+  .meta{list-style:none;font-size:.88rem;color:var(--muted);display:grid;gap:6px;margin-bottom:20px}
+  .links{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:.8rem;font-weight:500;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--ink);background:var(--bg)}
+  .chip:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+  .btn{display:inline-block;margin-top:18px;width:100%;text-align:center;background:var(--accent);color:#fff;border-radius:10px;padding:10px;font-weight:600;font-size:.9rem}
+  .btn:hover{text-decoration:none;filter:brightness(1.08)}
+
+  main section{padding:8px 0 48px;border-bottom:1px solid var(--line);margin-bottom:40px}
+  main section:last-child{border-bottom:none}
+  .eyebrow{font-family:var(--mono);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+  h1{font-family:var(--serif);font-size:clamp(2rem,4vw,2.9rem);line-height:1.15;font-weight:600;margin-bottom:18px}
+  h3.sec{font-family:var(--serif);font-size:1.7rem;font-weight:600;margin-bottom:20px}
+  .lead{font-size:1.1rem;color:var(--muted);max-width:62ch}
+  p+p{margin-top:14px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+  .tag{font-family:var(--mono);font-size:.78rem;background:var(--accent-soft);color:var(--accent);border-radius:6px;padding:4px 10px}
+
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+  .tile{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px}
+  .tile h4{font-size:1.02rem;margin-bottom:6px}
+  .tile p{font-size:.92rem;color:var(--muted)}
+  .tile .gh{font-size:.85rem;font-weight:600;color:var(--accent);margin-top:14px;display:inline-block}
+  a.tile:hover .gh{text-decoration:underline}
+  a.tile{color:inherit;transition:border-color .15s,transform .15s}
+  a.tile:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+
+  .pubs{list-style:none;display:grid;gap:18px}
+  .pubs li{display:grid;grid-template-columns:64px 1fr;gap:16px}
+  .year{font-family:var(--mono);font-size:.85rem;color:var(--accent);padding-top:2px}
+  .pubs .t{font-weight:600}
+  .pubs .a{font-size:.9rem;color:var(--muted)}
+  .pubs .j{font-size:.88rem;font-style:italic;color:var(--muted)}
+
+  .timeline{list-style:none;border-left:2px solid var(--line);padding-left:24px;display:grid;gap:22px}
+  .timeline li{position:relative}
+  .timeline li::before{content:"";position:absolute;left:-31px;top:7px;width:12px;height:12px;border-radius:50%;background:var(--surface);border:2px solid var(--accent)}
+  .timeline .when{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+  .timeline .what{font-weight:600}
+  .timeline .where{color:var(--muted);font-size:.93rem}
+
+  .train{list-style:none;display:grid;gap:0}
+  .train li{display:grid;grid-template-columns:64px 1fr;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line)}
+  .train li:last-child{border-bottom:none}
+  .train .t{font-weight:600;font-size:.96rem}
+  .train .o{color:var(--muted);font-size:.88rem}
+  .sub{font-family:var(--serif);font-size:1.15rem;font-weight:600;margin:30px 0 12px}
+  .todo{background:#fff6d6;color:#6b5100;border:1px dashed #d9b84a;border-radius:6px;padding:1px 6px;font-size:.85em}
+  @media (prefers-color-scheme:dark){.todo{background:#3a3214;color:#f0d87a;border-color:#7a6620}}
+
+  .contact-box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:26px}
+  form{display:grid;gap:12px;margin-top:18px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  input,textarea,select{width:100%;font:inherit;font-size:.95rem;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink)}
+  input:focus,textarea:focus,select:focus{outline:2px solid var(--accent);border-color:transparent}
+  button.send{justify-self:start;background:var(--accent);color:#fff;border:none;border-radius:10px;padding:11px 22px;font:inherit;font-weight:600;cursor:pointer}
+
+  footer{max-width:1120px;margin:0 auto;padding:28px 24px 40px;color:var(--muted);font-size:.85rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+
+  @media (max-width:1060px){.nav ul a{font-size:.85rem}.nav ul{gap:12px}}
+  @media (max-width:880px){
+    .wrap{grid-template-columns:1fr;gap:32px;padding-top:28px}
+    aside{position:static}
+    .grid{grid-template-columns:1fr}
+    .menu-btn{display:block}
+    .nav ul{display:none;position:absolute;top:58px;left:0;right:0;flex-direction:column;gap:0;background:var(--surface);border-bottom:1px solid var(--line)}
+    .nav ul.open{display:flex}
+    .nav ul a{display:block;padding:12px 24px}
+    .row{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="#top">Betselot Z. Ayano</a>
+    <button class="menu-btn" aria-label="Menu" onclick="document.getElementById('menu').classList.toggle('open')">☰</button>
+    <ul id="menu" onclick="this.classList.remove('open')">
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#projects">Pipelines</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#training">Training</a></li>
+      <li><a href="#awards">Awards</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</header>
+
+<div class="wrap" id="top">
+  <aside>
+    <div class="card">
+      <div class="avatar"><img src="photo.jpg" alt="Betselot Zerihun Ayano"></div>
+      <h2>Betselot Zerihun Ayano</h2>
+      <p class="role">Bioinformatician · Pathogen Genomics · Infectious Disease Surveillance<br>Ethiopian Public Health Institute</p>
+      <ul class="meta">
+        <li>📍 Addis Ababa, Ethiopia</li>
+        <li>🎓 PhD candidate, Bioinformatics — <a href="https://epigenethiopia.org/phd-students-1/betselot-zerihun" target="_blank" rel="noopener">Heinrich-Heine University Düsseldorf</a></li>
+        <li>🎓 MSc Bioinformatics · MSc Medical Microbiology</li>
+        <li>🗣 English · Amharic · Afan Oromo</li>
+      </ul>
+      <div class="links">
+        <a class="chip" href="https://github.com/betselotz" target="_blank" rel="noopener">GitHub</a>
+        <a class="chip" href="https://orcid.org/0000-0003-4277-2247" target="_blank" rel="noopener">ORCID</a>
+        <a class="chip" href="https://www.linkedin.com/in/betselot-zerihun-ayano-a90287189" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="chip" href="https://www.researchgate.net/profile/Betselot-Ayano" target="_blank" rel="noopener">ResearchGate</a>
+        <a class="chip" href="https://loop.frontiersin.org/people/2675466/network" target="_blank" rel="noopener">Loop</a>
+      </div>
+      <!-- Upload cv.pdf to the repo for this button to work -->
+      <a class="btn" href="cv.pdf" target="_blank">Download CV</a>
+    </div>
+  </aside>
+
+  <main>
+    <section id="about">
+      <p class="eyebrow">Hello, I'm Betselot</p>
+      <h1>Decoding pathogen genomes to strengthen public health in Ethiopia.</h1>
+      <p class="lead">I am a bioinformatician at the Ethiopian Public Health Institute (EPHI), applying genomics and bioinformatics across bacterial and viral pathogens — from drug-resistant tuberculosis to SARS-CoV-2 and Ethiopia's first Marburg virus outbreak.</p>
+      <p>I joined EPHI in 2018 after graduating in Medical Laboratory Sciences from Addis Ababa University, and grew from laboratory diagnostics into genomics. During the COVID-19 pandemic I was among the first to work in EPHI's newly established SARS-CoV-2 lab and helped set up similar labs across regions of Ethiopia. In 2025 I contributed to sequencing and genomic analysis of Ethiopia's first Marburg virus outbreak, providing genomic confirmation for the national response within 24 hours.</p>
+      <p>I am a PhD candidate in Bioinformatics at Heinrich-Heine University Düsseldorf through the <a href="https://epigenethiopia.org/phd-students-1/betselot-zerihun" target="_blank" rel="noopener">EpiGen Ethiopia</a> consortium, and hold an MSc in Bioinformatics (2025) and an MSc in Medical Microbiology (2023) from Addis Ababa University. My work spans outbreak genomics, antimicrobial resistance, transmission analysis, wastewater surveillance and building bioinformatics capacity at EPHI.</p>
+      <div class="tags">
+        <span class="tag">Pathogen genomics</span>
+        <span class="tag">Outbreak sequencing</span>
+        <span class="tag">Antimicrobial resistance</span>
+        <span class="tag">Phylogenomics</span>
+        <span class="tag">Viral &amp; bacterial genomics</span>
+        <span class="tag">Wastewater surveillance</span>
+        <span class="tag">Bash · Python · Perl</span>
+      </div>
+    </section>
+
+    <section id="research">
+      <p class="eyebrow">Research</p>
+      <h3 class="sec">What I work on</h3>
+      <div class="grid">
+        <div class="tile">
+          <h4>Outbreak genomics</h4>
+          <p>Rapid sequencing and genomic analysis of emerging viral threats — including Ethiopia's first Marburg virus outbreak and SARS-CoV-2 — to inform public health response.</p>
+        </div>
+        <div class="tile">
+          <h4>Antimicrobial resistance</h4>
+          <p>Genomic detection of drug resistance in bacterial pathogens, including whole-genome-sequencing-based surveillance of drug-resistant and XDR tuberculosis.</p>
+        </div>
+        <div class="tile">
+          <h4>Phylogenomics &amp; transmission</h4>
+          <p>Lineage typing, phylogenetics and transmission dynamics of bacterial and viral pathogens circulating in Ethiopia.</p>
+        </div>
+        <div class="tile">
+          <h4>Surveillance &amp; capacity building</h4>
+          <p>Wastewater and integrated genomic surveillance, reproducible pipelines, and training to build a robust bioinformatics facility at EPHI.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="eyebrow">Open source</p>
+      <h3 class="sec">Pipelines &amp; workflows</h3>
+      <div class="grid">
+        <a class="tile" href="https://github.com/betselotz/MTB-Illumina-WGS-Analysis" target="_blank" rel="noopener">
+          <h4>MTB-Illumina-WGS-Analysis</h4>
+          <p>End-to-end workflow for <em>M. tuberculosis</em> Illumina WGS: QC, mapping, variant calling, annotation and lineage typing.</p>
+          <span class="gh">View on GitHub →</span>
+        </a>
+        <a class="tile" href="https://github.com/betselotz/MTB-Genome-analysis-of-XDR-TB-from-Ethiopia" target="_blank" rel="noopener">
+          <h4>XDR-TB Genome Analysis — Ethiopia</h4>
+          <p>Whole-genome sequence analysis of extensively drug-resistant TB strains from Ethiopia.</p>
+          <span class="gh">View on GitHub →</span>
+        </a>
+        <a class="tile" href="https://github.com/betselotz/Marburg-Virus-VSP-Illumina-Analysis" target="_blank" rel="noopener">
+          <h4>Marburg Virus VSP Analysis</h4>
+          <p>Pipeline for Marburg virus sequencing data from the Viral Sequencing Project.</p>
+          <span class="gh">View on GitHub →</span>
+        </a>
+        <a class="tile" href="https://github.com/betselotz?tab=repositories" target="_blank" rel="noopener">
+          <h4>All repositories</h4>
+          <p>Training materials, ARTIC field bioinformatics, MTBseq and other repositories.</p>
+          <span class="gh">View on GitHub →</span>
+        </a>
+      </div>
+    </section>
+
+    <section id="publications">
+      <p class="eyebrow">Selected work</p>
+      <h3 class="sec">Publications</h3>
+      <ul class="pubs">
+        <li>
+          <span class="year">2026</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1038/s41564-026-02540-y" target="_blank" rel="noopener">Genomic analysis of early case samples from the 2025 Marburg virus outbreak in Ethiopia</a>
+            <div class="a">Feyssa MD, Tollera G, Abdella S, Bashea C, <strong>Zerihun B</strong>, Abte M, Getu M, et al.</div>
+            <div class="j">Nature Microbiology</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2026</span>
+          <div>
+            <a class="t" href="https://doi.org/10.2147/IDR.S587445" target="_blank" rel="noopener">Performance Evaluation of Nasopharyngeal Swab Pooling to Improve SARS-CoV-2 Testing Capacity via Closed Real-Time RT-PCR Assays</a>
+            <div class="a"><strong>Ayano B</strong>, Gebre-Selassie S, Kebede HB, Alemu A, Diriba G, Hailu MD, … Abdella S, Abegaz WE</div>
+            <div class="j">Infection and Drug Resistance, 19, 587445</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2026</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1128/spectrum.02736-25" target="_blank" rel="noopener">Genetic diversity and drug resistance profiles of <em>Mycobacterium tuberculosis</em> among Ethiopian children as determined by whole-genome sequencing</a>
+            <div class="a">… Weldemariam AG, <strong>Zerihun B</strong>, Moga S, Adnew B, Melaku K, … Getahun M</div>
+            <div class="j">Microbiology Spectrum</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2025</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1186/s12864-025-12441-9" target="_blank" rel="noopener">Exploring transmission dynamics in epidemiologically linked pulmonary tuberculosis cases and household contacts: a WGS-based investigation</a>
+            <div class="a">Seid G, Cabibbe AM, <strong>Zerihun B</strong>, et al.</div>
+            <div class="j">BMC Genomics, 27, 82</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2025</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1038/s43856-025-01271-1" target="_blank" rel="noopener">Whole genome sequencing-based detection of extensively drug-resistant tuberculosis from Ethiopia</a>
+            <div class="a">Diriba G, Mollalign H, Meaza A, Getu M, <strong>Zerihun B</strong>, Alemu A, et al.</div>
+            <div class="j">Communications Medicine, 6(1), 14</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2025</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1093/ofid/ofaf367" target="_blank" rel="noopener">The Ethiopian Third National Tuberculosis Drug Resistance Survey Incorporating Whole Genome Sequencing</a>
+            <div class="a">Moga S, Getahun M, Mohammed Z, Alemu A, Sinshaw W, Seid G, <strong>Zerihun B</strong>, Getu M, et al.</div>
+            <div class="j">Open Forum Infectious Diseases, 12(7), ofaf367</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2025</span>
+          <div>
+            <a class="t" href="https://pubmed.ncbi.nlm.nih.gov/39988072/" target="_blank" rel="noopener">Second-line drug resistance among multidrug-resistant tuberculosis patients in Ethiopia: A laboratory-based surveillance</a>
+            <div class="a">Diriba G, Alemu A, Yenew B, <strong>Ayano BZ</strong>, Hailu M, et al.</div>
+            <div class="j">PubMed 39988072</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2024</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1016/j.idcr.2024.e01988" target="_blank" rel="noopener">Acquired bedaquiline and fluoroquinolones resistance during treatment follow-up in Oromia Region, North Shewa, Ethiopia</a>
+            <div class="a">Diriba G, Alemu A, <strong>Ayano BZ</strong>, Yenew B, Hailu M, et al.</div>
+            <div class="j">IDCases, 36, e01988</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2024</span>
+          <div>
+            <a class="t" href="https://pubmed.ncbi.nlm.nih.gov/38491509/" target="_blank" rel="noopener">Comparison of the yield of two tuberculosis screening approaches among household contacts in a community setting of Silti Zone, Central Ethiopia: a prospective cohort study</a>
+            <div class="a">Wolde HM, <strong>Zerihun B</strong>, Sinshaw W, Yewhalaw D, Abebe G</div>
+            <div class="j">BMC Pulmonary Medicine, 24(1), 135</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2024</span>
+          <div>
+            <a class="t" href="https://pubmed.ncbi.nlm.nih.gov/38770348/" target="_blank" rel="noopener">Routine tuberculosis contact investigation yield and preventive treatment cascade in central Ethiopia</a>
+            <div class="a">Seid G, Alemu A, Diriba G, <strong>Zerihun B</strong>, Abebaw Y, Moga S, et al.</div>
+            <div class="j">Heliyon, 10(10), e30942</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2023</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1038/s41467-023-42755-9" target="_blank" rel="noopener">A smooth tubercle bacillus from Ethiopia phylogenetically close to the <em>Mycobacterium tuberculosis</em> complex</a>
+            <div class="a">Yenew B, Ghodousi A, Diriba G, … Seid G, <strong>Zerihun B</strong>, Getu M, … Supply P, Cirillo DM</div>
+            <div class="j">Nature Communications, 14, 7519</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2023</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1371/journal.pone.0284737" target="_blank" rel="noopener">Diagnostic performance of the GenoType MTBDR<em>plus</em> VER 2.0 line probe assay for the detection of isoniazid resistant <em>Mycobacterium tuberculosis</em> in Ethiopia</a>
+            <div class="a">Moga S, Bobosha K, Fikadu D, <strong>Zerihun B</strong>, Diriba G, Amare M, et al.</div>
+            <div class="j">PLoS ONE</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2023</span>
+          <div>
+            <a class="t" href="https://www.nature.com/articles/s41598-023-48407-8" target="_blank" rel="noopener">Molecular epidemiology and drug sensitivity of <em>Mycobacterium tuberculosis</em> in homeless individuals in the Addis Ababa city, Ethiopia</a>
+            <div class="a">Shamebo T, Gumi B, Zewude A, Gashaw F, Mohammed T, Girma M, <strong>Zerihun B</strong>, Getu M, Mekasha S, Getahun M, Wondale B, Petros B, … Ameni G</div>
+            <div class="j">Scientific Reports, 13, 21370</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2022</span>
+          <div>
+            <a class="t" href="https://www.semanticscholar.org/paper/2c3bb7ce516d49ef2b55f7fa407a93244d909283" target="_blank" rel="noopener">Pre-extensively drug-resistant tuberculosis among multidrug-resistant tuberculosis patients in Ethiopia: a laboratory-based surveillance study</a>
+            <div class="a">Diriba G, Alemu A, Tola HH, … <strong>Ayano BZ</strong>, Getu M, et al.</div>
+            <div class="j">IJID Regions, 5, 39–43</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2022</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1371/journal.pone.0275159" target="_blank" rel="noopener">A glimpse into the genotype and clinical importance of non tuberculous mycobacteria among pulmonary tuberculosis patients: The case of Ethiopia</a>
+            <div class="a">Alemayehu A, Kebede A, Neway S, Tesfaye E, <strong>Zerihun B</strong>, Getu M, et al.</div>
+            <div class="j">PLoS ONE, 17(9), e0275159</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2022</span>
+          <div>
+            <a class="t" href="https://doaj.org/article/a1a0e28ff1774afca3c42d2518cf46de" target="_blank" rel="noopener">Magnitude of <em>Mycobacterium tuberculosis</em>, drug resistance and associated factors among presumptive tuberculosis patients at St. Paul’s Hospital Millennium Medical College, Addis Ababa, Ethiopia</a>
+            <div class="a">Kassa M, Desta K, Ambachew R, Gebreyohannes Z, Gebreyohanns A, Zena N, Amare M, <strong>Zerihun B</strong>, Getu M, Gize A</div>
+            <div class="j">PLoS ONE, 17(8)</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2021</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1128/jcm.00406-21" target="_blank" rel="noopener">The Simple One-Step (SOS) Stool Processing Method for Use with the Xpert MTB/RIF Assay for a Child-Friendly Diagnosis of Tuberculosis Closer to the Point of Care</a>
+            <div class="a">de Haas P, Yenew B, Mengesha E, … Diriba G, <strong>Zerihun B</strong>, … Klinkenberg E</div>
+            <div class="j">Journal of Clinical Microbiology, 59(8), e0040621</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2021</span>
+          <div>
+            <a class="t" href="https://pubmed.ncbi.nlm.nih.gov/34962949/" target="_blank" rel="noopener">Diagnostic accuracy of Truenat Tuberculosis and Rifampicin-Resistance assays in Addis Ababa, Ethiopia</a>
+            <div class="a">Meaza A, Tesfaye E, Mohamed Z, <strong>Zerihun B</strong>, Seid G, Eshetu K, et al.</div>
+            <div class="j">PLoS ONE, 16(12), e0261084</div>
+          </div>
+        </li>
+        <li>
+          <span class="year">2020</span>
+          <div>
+            <a class="t" href="https://doi.org/10.1186/s12879-020-4817-2" target="_blank" rel="noopener">Does Xpert® MTB/RIF assay give rifampicin resistance results without identified mutation? Review of cases from Addis Ababa, Ethiopia</a>
+            <div class="a">Alemu A, Tadesse M, Seid G, Mollalign H, … Getu M, <strong>Zerihun B</strong></div>
+            <div class="j">BMC Infectious Diseases, 20(1), 87</div>
+          </div>
+        </li>
+      </ul>
+      <p style="margin-top:22px;font-size:.92rem">Full list on <a href="https://orcid.org/0000-0003-4277-2247" target="_blank" rel="noopener">ORCID</a> and <a href="https://www.researchgate.net/profile/Betselot-Ayano" target="_blank" rel="noopener">ResearchGate</a>.</p>
+    </section>
+
+    <section id="experience">
+      <p class="eyebrow">Career</p>
+      <h3 class="sec">Experience</h3>
+      <ul class="timeline">
+        <li>
+          <div class="when">Nov 2024 – present</div>
+          <div class="what">Bioinformatician</div>
+          <div class="where">Ethiopian Public Health Institute, Addis Ababa</div>
+        </li>
+        <li>
+          <div class="when">Oct 2019 – Jan 2024</div>
+          <div class="what">Research Assistant</div>
+          <div class="where">Ethiopian Public Health Institute, Addis Ababa</div>
+        </li>
+        <li>
+          <div class="when">Oct 2018 – Oct 2019</div>
+          <div class="what">Junior Researcher</div>
+          <div class="where">Ethiopian Public Health Institute, Addis Ababa</div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="education">
+      <p class="eyebrow">Academic</p>
+      <h3 class="sec">Education</h3>
+      <ul class="timeline">
+        <li>
+          <div class="when">Ongoing</div>
+          <div class="what"><a href="https://epigenethiopia.org/phd-students-1/betselot-zerihun" target="_blank" rel="noopener">PhD in Bioinformatics ↗</a></div>
+          <div class="where">Heinrich-Heine University Düsseldorf · EpiGen Ethiopia consortium, with EPHI</div>
+        </li>
+        <li>
+          <div class="when">2025</div>
+          <div class="what">MSc in Bioinformatics</div>
+          <div class="where">Addis Ababa University · GPA 3.85/4.0, excellent thesis</div>
+        </li>
+        <li>
+          <div class="when">2023</div>
+          <div class="what">MSc in Medical Microbiology</div>
+          <div class="where">Addis Ababa University · GPA 3.61/4.0, excellent thesis</div>
+        </li>
+        <li>
+          <div class="when">2018</div>
+          <div class="what">BSc in Medical Laboratory Sciences</div>
+          <div class="where">Addis Ababa University · GPA 3.77/4.0</div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="training">
+      <p class="eyebrow">Professional development</p>
+      <h3 class="sec">Training &amp; certifications</h3>
+      <h4 class="sub">Genomics &amp; bioinformatics</h4>
+      <ul class="train">
+        <li><span class="year">2025</span><div><div class="t">Advanced Bioinformatics of Wastewater Surveillance</div><div class="o">Central Public Health Laboratories (CPHL) · Kampala, Uganda</div></div></li>
+        <li><span class="year">2025</span><div><div class="t">Africa CDC Public Health Bioinformatics</div><div class="o">International Livestock Research Institute (ILRI) · Nairobi, Kenya</div></div></li>
+        <li><span class="year">2025</span><div><div class="t">Genomic Sequencing of Drug-Resistant Tuberculosis</div><div class="o">Uganda Supranational TB Reference Laboratory · Kampala, Uganda</div></div></li>
+        <li><span class="year">2024</span><div><div class="t">Data Science for Health Discovery and Innovation in Africa — Train-the-Trainer</div><div class="o">University of Cape Town · Cape Town, South Africa</div></div></li>
+        <li><span class="year">2024</span><div><div class="t"><a href="https://genomics.africa/2024/12/11/genomics-africa-fellow-betselot-zerihun-ayano/" target="_blank" rel="noopener">Data Science and Bioinformatics ↗</a></div><div class="o">Centre for Epidemic Response and Innovation (CERI) · Cape Town, South Africa</div></div></li>
+        <li><span class="year">2024</span><div><div class="t">Genomic Epidemiology Workshop</div><div class="o">Armauer Hansen Research Institute · Addis Ababa</div></div></li>
+        <li><span class="year">2024</span><div><div class="t">Genomic Data Curation</div><div class="o">Africa CDC · Addis Ababa</div></div></li>
+        <li><span class="year">2024</span><div><div class="t">Next Generation Sequencing and Bioinformatics</div><div class="o">Ethiopian Public Health Institute · Addis Ababa</div></div></li>
+        <li><span class="year">2024</span><div><div class="t">Advanced Bioinformatics Course</div><div class="o">Bio and Emerging Technology Institute · Addis Ababa</div></div></li>
+        <li><span class="year">2023</span><div><div class="t">Establishing Pathogen Genomics Capacity in Africa</div><div class="o">Wellcome Connecting Science · Addis Ababa</div></div></li>
+      </ul>
+      <h4 class="sub">Public health &amp; laboratory</h4>
+      <ul class="train">
+        <li><span class="year">2024</span><div><div class="t">Standardization Cooperation of Public Health between China and African Countries</div><div class="o">Chengdu Institute of Standardization · Chengdu, China</div></div></li>
+        <li><span class="year">2023</span><div><div class="t">Epidemic Prevention and Control with Traditional Chinese Medicine for Developing Countries</div><div class="o">Beijing Holley-Cotec Pharmaceuticals · Beijing, China</div></div></li>
+        <li><span class="year">2022</span><div><div class="t">GeneXpert MTB/XDR</div><div class="o">Ethiopian Public Health Institute · Adama</div></div></li>
+        <li><span class="year">2021</span><div><div class="t">GeneXpert PT Course</div><div class="o">Uganda Supranational Reference Laboratory · Kampala, Uganda</div></div></li>
+        <li><span class="year">2020</span><div><div class="t">Laboratory Quality Management System (LQMS), Biosafety and Biosecurity</div><div class="o">Ethiopian Public Health Institute · Adama</div></div></li>
+        <li><span class="year">2020</span><div><div class="t">GenoType MTBDRplus VER 2.0 and MTBDRsl VER 2.0</div><div class="o">Hain Lifescience · Addis Ababa</div></div></li>
+        <li><span class="year">2020</span><div><div class="t">Pathogen Asset Control System (PACS) — Biological Threat Reduction Program</div><div class="o">US Defense Threat Reduction Agency · Addis Ababa</div></div></li>
+        <li><span class="year">2019</span><div><div class="t">Phenotypic Drug Susceptibility Testing of <em>M. tuberculosis</em></div><div class="o">Ethiopian Public Health Institute · Addis Ababa</div></div></li>
+        <li><span class="year">2018</span><div><div class="t">Line Probe Assay (MTBDRsl) for Second-Line Anti-TB Drug Susceptibility Testing</div><div class="o">Ethiopian Public Health Institute · Addis Ababa</div></div></li>
+        <li><span class="year">2018</span><div><div class="t">Training of Trainers on GeneXpert MTB/RIF Assay and GX-Connectivity</div><div class="o">Ethiopian Public Health Institute · Addis Ababa</div></div></li>
+        <li><span class="year">2018</span><div><div class="t">Tuberculosis Culture and Identification</div><div class="o">Ethiopian Public Health Institute · Addis Ababa</div></div></li>
+      </ul>
+    </section>
+
+    <section id="awards">
+      <p class="eyebrow">Recognition</p>
+      <h3 class="sec">Awards &amp; scholarships</h3>
+      <ul class="pubs">
+        <li><span class="year">2026</span><div><a class="t" href="https://galaxyproject.org/events/gcc2026/fellowships/" target="_blank" rel="noopener">Galaxy Community Fund Scholarship ↗</a><div class="a">Galaxy Community Conference (GCC2026)</div></div></li>
+        <li><span class="year">2026</span><div><a class="t" href="https://lnkd.in/p/exAbytbg" target="_blank" rel="noopener">Scientific Contribution Award — Marburg Virus Genomic Analysis ↗</a><div class="a">Ethiopian Public Health Institute · for sequencing and genomic analysis of Ethiopia's first Marburg virus outbreak, delivering genomic confirmation within 24 hours</div></div></li>
+        <li><span class="year">2025</span><div><a class="t" href="https://jxtxfoundation.org/news/2025-3-6-bg-awardees/" target="_blank" rel="noopener">JXTX Scholarship Awardee ↗</a><div class="a">Biology of Genomes Conference, Cold Spring Harbor Laboratory · New York, USA · presented on tuberculosis phylogenomics</div></div></li>
+        <li><span class="year">2025</span><div><span class="t">Bursary Awardee</span><div class="a">Pandemic Science Conference, University of Oxford · Oxford, UK · presented on bedaquiline-resistant XDR-TB in Ethiopia</div></div></li>
+        <li><span class="year">2025</span><div><span class="t">Travel Grant Recipient</span><div class="a">12th EDCTP Forum, EDCTP3 · Kigali, Rwanda · presented on TB genomics in Ethiopia</div></div></li>
+        <li><span class="year">2024</span><div><a class="t" href="https://genomics.africa/2024/12/11/genomics-africa-fellow-betselot-zerihun-ayano/" target="_blank" rel="noopener">Genomics Africa Fellow ↗</a><div class="a">Data Science for Genomic Epidemiology programme (Sep 2024) · Centre for Epidemic Response and Innovation (CERI), Cape Town, South Africa</div></div></li>
+        <li><span class="year">2024</span><div><span class="t">Bursary Awardee</span><div class="a">Pandemic Science Conference, University of Oxford · Oxford, UK · presented on swab pooling for SARS-CoV-2 detection</div></div></li>
+        <li><span class="year">2024</span><div><span class="t">Travel Grant &amp; Best Poster Presenter</span><div class="a">IFCC WorldLab &amp; Young Scientists Forum · Dubai, UAE · presented on SARS-CoV-2 molecular diagnostics</div></div></li>
+        <li><span class="year">2018</span><div><span class="t">2nd Best Student Award</span><div class="a">Addis Ababa University</div></div></li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <p class="eyebrow">Get in touch</p>
+      <h3 class="sec">Contact</h3>
+      <div class="contact-box">
+        <p>Open to research collaborations in pathogen genomics, outbreak response, AMR surveillance and bioinformatics training.</p>
+        <form id="contactForm">
+          <div class="row">
+            <input name="name" placeholder="Your name" required>
+            <input name="email" type="email" placeholder="Your email" required>
+          </div>
+          <div class="row">
+            <input name="org" placeholder="Organization (optional)">
+            <select name="type">
+              <option>Collaboration</option>
+              <option>General message</option>
+            </select>
+          </div>
+          <textarea name="message" rows="5" placeholder="Your message" required></textarea>
+          <button class="send" type="submit">Send message</button>
+        </form>
+      </div>
+    </section>
+  </main>
+</div>
+
+<footer>
+  <span>© <span id="yr"></span> Betselot Zerihun Ayano</span>
+  <span>Bioinformatics · Pathogen Genomics · Public Health</span>
+</footer>
+
+<script>
+  document.getElementById('yr').textContent = new Date().getFullYear();
+  // ⚠️ Set your public email here. The form opens the visitor's email app with the message pre-filled.
+  const CONTACT_EMAIL = "your.email@example.com";
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = new FormData(e.target);
+    const subject = `[${f.get('type')}] Message from ${f.get('name')}`;
+    const body = `${f.get('message')}\n\n— ${f.get('name')} (${f.get('email')})${f.get('org') ? ', ' + f.get('org') : ''}`;
+    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  });
+</script>
+</body>
+</html>
